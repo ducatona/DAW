@@ -12,11 +12,11 @@
 
     <?php
 
-   
- 
-    $conexion = conexionPDO("tienda","super","super123");
 
-    if(isset($conexion)){
+
+    $conexion = conexionPDO("tienda", "super", "super123");
+
+    if (isset($conexion)) {
         echo "Conexion establecida con exito";
     }
 
