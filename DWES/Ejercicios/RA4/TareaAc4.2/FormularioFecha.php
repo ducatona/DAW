@@ -11,11 +11,11 @@
 
 <body>
 
-<form action="" method="post">
-<label for="fecha">Fecha de la pelicula que quieres buscar(YYYY-MM-DD):</label>
-<input type="date" name="fecha" id="fecha" required>
-<input type="submit" value="Buscar">
-</form>
+    <form action="" method="post">
+        <label for="fecha">Fecha de la pelicula que quieres buscar(YYYY-MM-DD):</label>
+        <input type="date" name="fecha" id="fecha" required>
+        <input type="submit" value="Buscar">
+    </form>
 
 
 
@@ -24,9 +24,9 @@
 
 
     $conexion = conexionPDO('goyas', 'goyas', 'goyas123');
-    
 
-    if([$_SERVER["REQUEST_METHOD"]== "post"]){
+
+    if ([$_SERVER["REQUEST_METHOD"] == "POST"]) {
 
         $fecha = $_POST['fecha']; //recogemos el valor de la fecha
 
@@ -34,19 +34,22 @@
 
 
         $consulta = $conexion->prepare("SELECT *  FROM peliculas WHERE fecha=?");
-        $consulta->bindParam("s",$fecha);
+        $consulta->bindParam(1, $fecha, PDO::PARAM_STR);
         $consulta->execute();
-        $resultado
+
+        $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
 
 
-
-
-
-
+        if ($resultado) {
+            echo "Título: " . htmlspecialchars($resultado["titulo"]) . "<br>";
+            // Puedes imprimir más detalles si es necesario
+        } else {
+            echo "No se encontraron películas para la fecha proporcionada.";
+        }
     }
 
 
-    
+
 
 
 
