@@ -95,57 +95,109 @@ let notas = [
 
 let aprobados = [];
 let suspensos = [];
+let mejoresNotas = [];
 
-function muestraDatos(){
-
-//Mostrar todos los elementos del json
-for (let i = 0; i < notas.length; i++) {
-  
-    let estudiante = notas[i];
+muestraDatos();
+alumnosAprobados();
+notaAlta();
 
 
-    console.log(`Estudiante: ${estudiante["nombre"]}` );
 
-    for(let asignatura in estudiante["notas"]){
+function muestraDatos() {
 
-        console.log(`${asignatura}: ${estudiante["notas"][asignatura]}`);
+    //Mostrar todos los elementos del json
+    for (let i = 0; i < notas.length; i++) {
 
+        let estudiante = notas[i];
+
+
+        console.log(`Estudiante: ${estudiante["nombre"]}`);
+
+        for (let asignatura in estudiante["notas"]) {
+
+            console.log(`${asignatura}: ${estudiante["notas"][asignatura]}`);
+
+        }
     }
- }
 
 }
 
 //Mostrar todos los alumnos que hayan aprobado todo
 
-function aprobados(){
+function alumnosAprobados() {
 
 
-for (let i = 0; i < notas.length; i++) {
+    for (let i = 0; i < notas.length; i++) {
 
-let alumnos = notas[i];
-let aprobado = false;
+        let alumnos = notas[i];
+        let nombre = notas[i]["nombre"];
+        let notasClase = notas[i]["notas"];
+        let suspendido = false;
 
-for(asignaturas in alumnos["notas"]){
+        for (let asignatura in notasClase) {
+
+            if (notasClase[asignatura] < 5) {
+                suspendido = true;
+                suspensos.push(`${asignatura} ${notasClase[asignatura]} ${nombre}`);
+            }
 
 
-    if()
+        }
+        if (!suspendido) {
 
+            aprobados.push(`${nombre}`);
+
+        }
+
+
+    }
+    for (const apro of aprobados) {
+        console.log("****Alumnos aprobados*****");
+        console.log(apro);
+
+    }
+
+    for (const susoensos of suspensos) {
+        console.log("****Alumnos suspensos****");
+        console.log(susoensos);
+
+    }
 
 }
 
+
+function notaAlta() {
+
+
+
+    for (let asignatura in notas[0]["notas"]){
+        let mNota = 0;
+        let mAsignatura = "";
+        let nombre = "";
+    for (let i = 0; i < notas.length; i++) {
+        let estudiante = notas[i];
+        let notasEstudiante = estudiante["notas"];
+        let nombreEstudiante = estudiante["nombre"];
+
+
+       
+
+            if(notasEstudiante[asignatura]> mNota){
+
+                mNota = notasEstudiante[asignatura];
+                mAsignatura = asignatura;
+                nombre = nombreEstudiante;
+
+
+            }
+
+        }
+        
     
-    
+
+console.log(`El estudiante ${nombre} con mejor nota en: ${mAsignatura} con la nota ${mNota}`);
+
+
 }
 
-
-
 }
-
-
-
-
-
-
-
-
-
