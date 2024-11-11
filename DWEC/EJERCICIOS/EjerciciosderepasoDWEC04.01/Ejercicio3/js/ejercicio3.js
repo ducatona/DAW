@@ -21,94 +21,117 @@ let notas = [
     ["Manuel", [8.5, 7.4, 8.1, 9.0, 7.9]]
 ];
 
+
+//ordenAsignaturas
+let asignaturas = ["matematicas", "lengua", "ingles", "fisica", "musica"];
+//Array donde almacenaremos los aprobados
 let aprobados = [];
+//Array donde almacenaremos los suspensos
 let suspensos = [];
 
 
-verNotas();
-mostrarAprobadosYsuspensos();
 
-function verNotas() {
 
+
+//llamadas
+mostrarInfo();
+mostrarAprobadoSuspensos();
+mostrarMayoresNotas();
+
+
+
+
+/***
+ * Funcion que devuelve toda la informacion del array notas
+ */
+function mostrarInfo() {
 
     for (let i = 0; i < notas.length; i++) {
-
-        //Accedemos a los arrays
         let nombre = notas[i][0];
-        let notasEstudiante = notas[i][1];
+        let notasEstudiantes = notas[i][1];
 
-        //Mostramos las notas utilizando el indice de cada nota
         console.log(`Notas de ${nombre}`);
-        console.log(`Matematicas ${notasEstudiante[0]}`);
-        console.log(`Lengua ${notasEstudiante[1]}`);
-        console.log(`Ingles ${notasEstudiante[2]}`);
-        console.log(`Fisica ${notasEstudiante[3]}`);
-        console.log(`Música ${notasEstudiante[4]}`);
 
+
+        for (let j = 0; j < notasEstudiantes.length; j++) {
+            console.log(`${asignaturas[j]}: ${notasEstudiantes[j]}`);
+
+        }
 
 
     }
-
-
 }
 
-function mostrarAprobadosYsuspensos() {
+/**
+ * Funcion que devuelve el nombre de los que han aprobado todo y de los que han suspendido alguna con el nombre de la asigntatura y la nota.
+ */
+function mostrarAprobadoSuspensos() {
+
+    for (let c = 0; c < notas.length; c++) {
+
+        let nombre = notas[c][0];
+        let notasAlumnos = notas[c][1];
+        let alumnoSuspenso = false;
+
+        for (let j = 0; j < notasAlumnos.length; j++) {
 
 
-    for (let i = 0; i < notas.length; i++) {
 
-        let nombre = notas[i][0];
-        let notasEstudiante = notas[i][1];
-        let aprobado = true;
+            if (notasAlumnos[j] < 5) {
 
-
-        for (let j = 0; j < notasEstudiante.length; j++) {
-            if (notasEstudiante[j] < 5) {
-                aprobado = false;
-                break;
+                alumnoSuspenso = true;
+                suspensos.push(`${nombre} ${asignaturas[j]} ${notasAlumnos[j]}`)
             }
 
+
+
         }
 
-
-        if (aprobado) {
+        if (!alumnoSuspenso) {
             aprobados.push(nombre);
-
-        } else {
-            suspensos.push(nombre);
         }
 
 
-    }
-
-
-    for (let z = 0; z < aprobados.length; z++) {
-        console.log("Lista de alumnos aprobados" + aprobados[z] + "\n");
 
     }
 
-    console.log("*********************************************************");
+    console.log("Aprobados:", aprobados);
 
-    for (let s = 0; s < suspensos.length; s++) {
-        console.log("Lista de alumnos suspensos " + suspensos[s] + "\n");
+    for (let d = 0; d < suspensos.length; d++) {
+        console.log(suspensos[d]);
 
     }
+
+}
+
+
+function mostrarMayoresNotas(){
+
+
+for (let i = 0; i < asignaturas.length; i++) {
+
+
+    let mejorAlumno = "";
+    let mejorNota = 0;
+
+    for (let j = 0; j < notas.length; j++) {
+        
+        let notaAlumno = notas[j][1][i];
+
+
+        if(notaAlumno > mejorNota){
+
+            mejorNota = notaAlumno;
+            mejorAlumno = notas[j][0];
+        }
+
+        
+    }
+
+    console.log(`La mejor nota en ${asignaturas[i]} es para ${mejorAlumno} con un ${mejorNota}`);
+}
 
 
 }
 
-function mostrarNotaAlta() {
 
-    let notaMayor;
-
-
-    for (let m = 0; m < notas.length; m++) {
-
-
-    }
-
-
-
-
-
-}
