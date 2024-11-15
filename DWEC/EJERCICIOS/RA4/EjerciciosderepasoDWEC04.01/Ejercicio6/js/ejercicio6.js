@@ -8,7 +8,7 @@ function manejadorClick() {
     document.getElementById("salida").innerHTML = "Has escrito: " + document.getElementById("entrada").value;
 }
 
-let agenda5 = [
+let agenda6 = [
     {
         "nombre": "Antonio",
         "apellidos": "Sierra García",
@@ -118,23 +118,23 @@ function ordenarPorCumpleaños(agenda) {
     });
 }
 
-ordenarPorNombre(agenda5);
-console.log("Ordenado por nombre:", agenda5);
+ordenarPorNombre(agenda6);
+console.log("Ordenado por nombre:", agenda6);
 
-ordenarPorApellido(agenda5);
-console.log("Ordenado por apellidos:", agenda5);
+ordenarPorApellido(agenda6);
+console.log("Ordenado por apellidos:", agenda6);
 
-ordenarPorTelefonoFijo(agenda5);
-console.log("Ordenado por teléfono fijo:", agenda5);
+ordenarPorTelefonoFijo(agenda6);
+console.log("Ordenado por teléfono fijo:", agenda6);
 
-ordenarPorTelefonoMovil(agenda5);
-console.log("Ordenado por teléfono móvil:", agenda5);
+ordenarPorTelefonoMovil(agenda6);
+console.log("Ordenado por teléfono móvil:", agenda6);
 
-ordenarPorTelefonoTrabajo(agenda5);
-console.log("Ordenado por teléfono de trabajo:", agenda5);
+ordenarPorTelefonoTrabajo(agenda6);
+console.log("Ordenado por teléfono de trabajo:", agenda6);
 
-ordenarPorDireccionCasa(agenda5);
-console.log("Ordenado por dirección de casa:", agenda5);
+ordenarPorDireccionCasa(agenda6);
+console.log("Ordenado por dirección de casa:", agenda6);
 
-ordenarPorCumpleaños(agenda5);
-console.log("Ordenado por cumpleaños:", agenda5);
+ordenarPorCumpleaños(agenda6);
+console.log("Ordenado por cumpleaños:", agenda6);
