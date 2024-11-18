@@ -7,84 +7,62 @@
     <title>Ejercicio 2</title>
 </head>
 
-
-
 <body>
-
     <form action="" method="post">
-        <label for="fecha">Fecha de la pelicula que quieres buscar(YYYY-MM-DD):</label>
-        <input type="date" name="fecha" id="fecha" required>
+        <label for="dato">Año de la película que quieres buscar (2000-2014):</label>
+        <input type="number" name="dato" id="dato" min="2000" max="2014" required>
         <input type="submit" value="Buscar">
     </form>
 
-
-
     <?php
+// Conexión a la base de datos
+$conexion = conexionPDO('goyas', 'goyas', 'goyas123');
 
+if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['dato'])) {
+    $anio = $_POST['dato']; // Recoger el año de la película
 
+    // Consulta que extrae el año de la columna fecha (suponiendo que la fecha tiene formato 'YYYY-MM-DD')
+    $consulta = $conexion->prepare("SELECT titulo, genero, fecha FROM pelicula WHERE LEFT(fecha, 4) = ?");
+    $consulta->bindParam(1, $anio, PDO::PARAM_STR); // Utilizamos PDO::PARAM_STR ya que estamos comparando con un string
+    $consulta->execute();
 
-    $conexion = conexionPDO('goyas', 'goyas', 'goyas123');
+    $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
 
-
-    if ([$_SERVER["REQUEST_METHOD"] == "POST"]) {
-
-        $fecha = $_POST['fecha']; //recogemos el valor de la fecha
-
-
-
-
-        $consulta = $conexion->prepare("SELECT *  FROM peliculas WHERE fecha=?");
-        $consulta->bindParam(1, $fecha, PDO::PARAM_STR);
-        $consulta->execute();
-
-        $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
-
-
-        if ($resultado) {
-            echo "Título: " . htmlspecialchars($resultado["titulo"]) . "<br>";
-            // Puedes imprimir más detalles si es necesario
-        } else {
-            echo "No se encontraron películas para la fecha proporcionada.";
+    if ($resultados) {
+        foreach ($resultados as $resultado) {
+            echo "Título: " . htmlspecialchars($resultado["titulo"]) . " - Género: " . htmlspecialchars($resultado["genero"]) . " - Fecha: " . htmlspecialchars($resultado["fecha"]) . "<br>";
         }
+    } else {
+        echo "No se encontraron películas para el año proporcionado.";
     }
+}
 
-
-
-
-
-
-
-
-
-
-    /**
-     * 
-     * @param string $nombreBd Nombre de la base de datos
-     * @param string $usuarioBd Nombre de usuario de la base de datos
-     * @param string $contraseñaBd Contraseña del usuario de la base de datos
-     * @return PDO|null Retorna un objeto PDO con la conexión a la base de datos o null en caso de error
-     */
-    function conexionPDO($nombreBd, $usuarioBd, $contraseñaBd)
-    {
-        $dsn = "mysql:host=localhost;dbname=$nombreBd"; // DSN con la interpolación de la variable
-        try {
-            $connection = new PDO($dsn, $usuarioBd, $contraseñaBd);
-            echo 'Conexión establecida correctamente';
-            return $connection;
-        } catch (PDOException $e) {
-            echo match ($e->getCode()) {
-                1049 => 'Base de datos no encontrada',
-                1045 => 'Acceso denegado',
-                2002 => 'Conexión rechazada',
-                default => 'Error desconocido: ' . $e->getMessage(),
-            };
-            return null; // Devuelve null si hay un error
-        }
+/**
+ * Función para establecer la conexión con la base de datos
+ * @param string $nombreBd Nombre de la base de datos
+ * @param string $usuarioBd Nombre de usuario de la base de datos
+ * @param string $contraseñaBd Contraseña del usuario de la base de datos
+ * @return PDO|null Retorna un objeto PDO con la conexión a la base de datos o null en caso de error
+ */
+function conexionPDO($nombreBd, $usuarioBd, $contraseñaBd)
+{
+    $dsn = "mysql:host=localhost;dbname=$nombreBd"; // DSN con la interpolación de la variable
+    try {
+        $connection = new PDO($dsn, $usuarioBd, $contraseñaBd);
+        $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $connection;
+    } catch (PDOException $e) {
+        echo match ($e->getCode()) {
+            1049 => 'Base de datos no encontrada',
+            1045 => 'Acceso denegado',
+            2002 => 'Conexión rechazada',
+            default => 'Error desconocido: ' . $e->getMessage(),
+        };
+        return null; // Devuelve null si hay un error
     }
+}
+?>
 
-
-
-    ?>
 </body>
 
 </html>
