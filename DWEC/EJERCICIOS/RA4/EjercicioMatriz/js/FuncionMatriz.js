@@ -67,7 +67,7 @@ function crearMatriz(dimensiones, x, y, z) {
         return true;
     }
 
-    function numAleatorio0a10() {
-        return Math.floor(Math.random() * 11); 
-    }
+                                                                                                                                                                                                                function numAleatorio0a10() {
+                                                                                                                                                                                                                    return Math.floor(Math.random() * 11); 
+                                                                                                                                                                                                                }
 }
