@@ -1,0 +1,158 @@
+/* General */
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(circle, #ff6ec7, #ff7b00);
+    color: #fff;
+    text-align: center;
+    animation: backgroundAnim 3s infinite alternate;
+}
+
+@keyframes backgroundAnim {
+    0% {
+        background: radial-gradient(circle, #ff6ec7, #ff7b00);
+    }
+
+    100% {
+        background: radial-gradient(circle, #00bfff, #ff1493);
+    }
+}
+
+/* Cabeceras */
+h1,
+h2,
+h3 {
+    font-family: 'Impact', sans-serif;
+    text-transform: uppercase;
+    color: #ff0;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    margin-top: 20px;
+}
+
+/* Enlaces */
+a {
+    color: #ff0;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: 2px solid #fff;
+    padding: 5px 15px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+a:hover {
+    transform: scale(1.1);
+    color: #ff00ff;
+    text-decoration: underline;
+    background-color: #fff;
+    color: #ff1493;
+}
+
+/* Contenedor principal */
+.container {
+    width: 85%;
+    margin: 20px auto;
+    background-color: #222;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+    box-sizing: border-box;
+    border: 3px solid #ff00ff;
+}
+
+/* Formularios */
+form {
+    margin-top: 30px;
+    padding: 20px;
+    background: linear-gradient(to right, #ff00ff, #00bfff);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+label {
+    font-size: 18px;
+    color: #ff1493;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 3px solid #ff0;
+    border-radius: 8px;
+    background-color: #222;
+    color: #fff;
+    font-size: 16px;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    border-color: #ff1493;
+    background-color: #333;
+}
+
+/* Botones */
+button {
+    background-color: #ff00ff;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff1493;
+    transform: scale(1.05);
+}
+
+/* Lista de contenidos */
+ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 18px;
+    line-height: 2;
+}
+
+li {
+    margin-bottom: 15px;
+    padding: 20px;
+    background-color: #444;
+    border-radius: 10px;
+    border: 2px solid #ff1493;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Mensajes de éxito */
+.success {
+    color: #00ff00;
+    font-weight: bold;
+    font-size: 20px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    margin-top: 20px;
+}
+
+svg.w-5.h-5 {
+    width: 20px;
+    height: 20px;
+}
+
+svg.w-5.h-5 {
+    fill: #ff6f61;
+}
+
+svg.w-5.h-5 {
+    margin-right: 5px;
+    margin-left: 5px;
+}
